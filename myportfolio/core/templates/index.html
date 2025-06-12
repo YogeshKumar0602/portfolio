@@ -1,0 +1,331 @@
+{% load static %}
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta name="description" content="Yogesh Kumar M - Python Full Stack Developer Portfolio">
+    <meta name="keywords" content="Python, Django, Flask, Fullstack Developer, Web Development">
+    <title>Yogesh Kumar M | Fullstack Developer</title>
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.10.5/font/bootstrap-icons.css" rel="stylesheet">
+    <link href="https://fonts.googleapis.com/css2?family=Raleway:wght@300;400;500;600;700&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href={% static "css/style.css" %}>
+    <style>
+        .alert {
+        padding: 12px;
+        margin-bottom: 10px;
+        border-radius: 5px;
+        font-weight: bold;
+        }
+
+        .alert.success {
+        background-color: #d4edda;
+        color: #155724;
+        }
+
+        .alert.error {
+        background-color: #f8d7da;
+        color: #721c24;
+        }
+        .images-logo{
+            display:flex;
+            flex-direction:row;
+        }
+        .navbar img{
+            height:50px;
+            width:50px;
+        }
+        @media (max-width: 768px){
+            .images-logo a{
+                display:none;
+            }
+            .navbar{
+                justify-content: space-between;
+                padding: 10px 40px;
+            }
+            .about-image{
+                height:50px;
+                width:50px;
+            }
+            .contact-image{
+                display:none;
+            }
+        }
+
+    </style>
+</head>
+
+<body>
+    <!-- Header & Navigation -->
+    <header class="header" id="header">
+        <nav class="navbar">
+            <div class="images-logo">
+                <img src="{% static 'images/logo.png' %}" alt="Yogesh Kumar M" loading="lazy">
+                <a href="#home" class="navbar-brand" aria-label="Home">Yogesh Kumar M</a>
+            </div>
+            <button class="hamburger" id="hamburger" aria-label="Menu" aria-expanded="false" onclick="toggleMenu()">
+                <span class="hamburger-line"></span>
+                <span class="hamburger-line"></span>
+                <span class="hamburger-line"></span>
+            </button>
+
+            <ul class="navbar-menu" id="navbarMenu" role="menubar">
+                <li role="none"><a href="#home" class="nav-link" role="menuitem">Home</a></li>
+                <li role="none"><a href="#about" class="nav-link" role="menuitem">About</a></li>
+                <li role="none"><a href="#skills" class="nav-link" role="menuitem">Skills</a></li>
+                <li role="none"><a href="#projects" class="nav-link" role="menuitem">Projects</a></li>
+                <li role="none"><a href="#contact" class="nav-link" role="menuitem">Contact</a></li>
+            </ul>
+        </nav>
+    </header>
+
+    <!-- Main Content -->
+    <main id="main-content">
+        <!-- Hero Section -->
+        <section class="hero" id="home" style="background: linear-gradient(rgba(17, 1, 28, 0.9), rgba(17, 1, 28, 0.7)), 
+              url('{% static 'images/back.jpg' %}') no-repeat center/cover;">
+            <div class="hero-content">
+                <h1 class="hero-title">
+                    I'm Yogesh Kumar <br>
+                    <span class="highlight">Fullstack Developer</span>
+                </h1>
+                <p class="hero-subtitle">
+                    Python Full Stack Developer skilled in building responsive web applications using Flask, Django, HTML, CSS,
+                    and JavaScript. Passionate about backend development, API integration, and creating seamless user experiences.
+                </p>
+                <a href="#projects" class="btn btn-primary">View My Work</a>
+                
+                <a href="#about" class="scroll-down" aria-label="Scroll down">
+                    <i class="bi bi-arrow-down"></i>
+                </a>
+            </div>
+        </section>
+
+        <!-- About Section -->
+        <section class="about section" id="about">
+            <div class="container">
+                <div class="about-wrapper">
+                    <div class="about-image">
+                        <img src="{% static 'images/portfolio-profile.jpg' %}" alt="Yogesh Kumar M" loading="lazy">
+                    </div>
+                    
+                    <div class="about-content">
+                        <span class="sub-title">About Me</span>
+                        <h2 class="section-title">Professional Profile</h2>
+                        <div class="about-text">
+                            <p>
+                                Hi, I'm Yogesh Kumar M, a passionate Python and Fullstack Developer with a B.Sc. in Computer
+                                Science. I specialize in backend development with Django and have built projects like an 
+                                e-commerce site, weather detector, and movie web app.
+                            </p>
+                            <p>
+                                I love solving real-world problems with clean, scalable code and continuously learning new 
+                                technologies to enhance my development skills.
+                            </p>
+                        </div>
+                        
+                        <div class="about-buttons">
+                            <a href="#contact" class="btn btn-primary">Contact Me</a>
+                            <a href="Yogesh_Kumar_CV.pdf" download class="btn btn-secondary">Download CV</a>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <!-- Skills Section -->
+        <section class="skills section" id="skills">
+            <div class="container">
+                <span class="sub-title">My Expertise</span>
+                <h2 class="section-title">Technical Skills</h2>
+                
+                <div class="skills-grid">
+                    {% for skill in skills %}
+                        <div class="skill-item fade-in">
+                            <div class="skill-header">
+                                <span class="skill-name">{{skill.name}}</span>
+                                <span class="skill-percent">{{skill.percentage}}%</span>
+                            </div>
+                            <div class="progress-container">
+                                <div class="progress-bar" style="width: {{skill.percentage}}%"></div>
+                            </div>
+                        </div>
+                    {% endfor %}
+                </div>
+            </div>
+        </section>
+
+        <!-- Services Section -->
+        <section class="services section">
+            <div class="container">
+                <h2 class="section-title">What I Can Do</h2>
+                
+                <div class="services-grid">
+                    <div class="service-card fade-in">
+                        <div class="service-icon">
+                            <i class="bi bi-code-slash"></i>
+                        </div>
+                        <h3 class="service-title">Frontend Development</h3>
+                        <ul class="service-list">
+                            <li>HTML5, CSS3, Tailwind</li>
+                            <li>JavaScript, React (Basics)</li>
+                            <li>Responsive Design</li>
+                            <li>UI/UX Implementation</li>
+                        </ul>
+                    </div>
+                    
+                    <div class="service-card fade-in delay-1">
+                        <div class="service-icon">
+                            <i class="bi bi-server"></i>
+                        </div>
+                        <h3 class="service-title">Backend Development</h3>
+                        <ul class="service-list">
+                            <li>Python, Django, Flask</li>
+                            <li>REST API Design</li>
+                            <li>Authentication & Authorization</li>
+                            <li>Deployment (Heroku, PythonAnywhere)</li>
+                        </ul>
+                    </div>
+                    
+                    <div class="service-card fade-in delay-2">
+                        <div class="service-icon">
+                            <i class="bi bi-database"></i>
+                        </div>
+                        <h3 class="service-title">Database Management</h3>
+                        <ul class="service-list">
+                            <li>PostgreSQL, MySQL</li>
+                            <li>SQLite for lightweight apps</li>
+                            <li>Django ORM</li>
+                            <li>Data modeling & relationships</li>
+                        </ul>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <!-- Projects Section -->
+        <section class="projects section" id="projects">
+            <div class="container">
+                <span class="sub-title">My Portfolio</span>
+                <h2 class="section-title">Recent Projects</h2>                
+                <div class="projects-grid">
+                    {% for project in projects %}
+                        <div class="project-card">
+                        <div class="project-image-wrapper">
+                            <img src="{{ project.image.url }}" alt="{{ project.title }}" loading="lazy">
+                            <div class="project-overlay">
+                            <h3 class="project-title">{{ project.title }}</h3>
+                            <div class="project-links">
+                                {% if project.live_demo_url %}
+                                <a href="{{ project.live_demo_url }}" class="project-link" target="_blank">Live Demo</a>
+                                {% endif %}
+                                {% if project.source_code_url %}
+                                <a href="{{ project.source_code_url }}" class="project-link" target="_blank">View Code</a>
+                                {% endif %}
+                            </div>
+                            </div>
+                        </div>
+                        </div>
+                    {% endfor %}
+                    </div>
+                </div>
+            </div>
+        </section>
+
+
+        <!-- Contact Section -->
+        <section class="contact section" id="contact">
+            <div class="container">
+                <div class="contact-wrapper">
+                    <div class="contact-form">
+                        <span class="sub-title">Get In Touch</span>
+                        <h2 class="section-title">Contact Me</h2>
+                        {% if messages %}
+                        <div class="messages">
+                            {% for message in messages %}
+                            <div class="alert {% if message.tags %}{{ message.tags }}{% endif %}">
+                                {{ message }}
+                            </div>
+                            {% endfor %}
+                        </div>
+                        {% endif %}
+
+                        
+                        <form id="contactForm" method="POST" novalidate>
+                            {% csrf_token %}
+                            {{ form.non_field_errors }}
+                            
+                            <div class="form-group">
+                                {{ form.name.label_tag }}
+                                {{ form.name }}
+                                {{ form.name.errors }}
+                            </div>
+
+                            <div class="form-group">
+                                {{ form.email.label_tag }}
+                                {{ form.email }}
+                                {{ form.email.errors }}
+                            </div>
+
+                            <div class="form-group">
+                                {{ form.subject.label_tag }}
+                                {{ form.subject }}
+                                {{ form.subject.errors }}
+                            </div>
+
+                            <div class="form-group">
+                                {{ form.message.label_tag }}
+                                {{ form.message }}
+                                {{ form.message.errors }}
+                            </div>
+
+                            <button type="submit" class="btn btn-primary">Send Message</button>
+                        </form>
+
+
+                    </div>
+                    
+                    <div class="contact-image">
+                        <img src="/images/portfolio-profile.jpg" alt="Yogesh Kumar M" loading="lazy">
+                    </div>
+                </div>
+            </div>
+        </section>
+    </main>
+
+    <!-- Footer -->
+    <footer class="footer">
+        <div class="container">
+            <div class="footer-content">
+                <div class="footer-links">
+                    <a href="https://wa.me/916383512153" target="_blank" rel="noopener noreferrer" aria-label="WhatsApp">
+                        <i class="bi bi-whatsapp"></i>
+                    </a>
+                    <a href="https://github.com/YogeshKumar0602" target="_blank" rel="noopener noreferrer" aria-label="GitHub">
+                        <i class="bi bi-github"></i>
+                    </a>
+                    <a href="https://www.linkedin.com/in/m-yogesh-kumar-676400245/" target="_blank" rel="noopener noreferrer" aria-label="LinkedIn">
+                        <i class="bi bi-linkedin"></i>
+                    </a>
+                    <a href="mailto:yoogesh06@gmail.com" aria-label="Email">
+                        <i class="bi bi-envelope"></i>
+                    </a>
+                </div>
+                
+                <p class="footer-text">
+                    &copy; <span id="current-year"></span> Yogesh Kumar M. All rights reserved.
+                </p>
+            </div>
+        </div>
+    </footer>
+
+    <!-- Back to Top Button -->
+    <a href="#home" class="back-to-top" aria-label="Back to top">
+        <i class="bi bi-arrow-up"></i>
+    </a>
+
+    <script src={% static 'script.js' %}></script>
+</body>
+
+</html>
